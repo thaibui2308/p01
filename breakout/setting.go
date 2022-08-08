@@ -1,0 +1,19 @@
+package breakout
+
+const (
+	// Screen layout's settings
+	SCREEN_WIDTH  = 320
+	SCREEN_HEIGHT = 240
+
+	// Player's settings
+	PLAYER_HEIGHT = SCREEN_HEIGHT / 24
+	PLAYER_WIDTH  = SCREEN_WIDTH / 12
+	PLAYER_X      = (SCREEN_WIDTH - PLAYER_WIDTH) / 2
+	PLAYER_Y      = SCREEN_HEIGHT * .8
+
+	// Targer and TargetSprite' settings
+	NUM_TARGETS     = 10
+	SCREEN_PADDING  = SCREEN_WIDTH / 10
+	TARGET_WIDTH    = (SCREEN_WIDTH - 2*SCREEN_PADDING) / (1.25*NUM_TARGETS - .25)
+	SPRITE_DISTANCE = TARGET_WIDTH / 4
+)
