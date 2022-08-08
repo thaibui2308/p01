@@ -14,6 +14,18 @@ type Player struct {
 	Width  float64
 }
 
+func NewPlayer() *Player {
+	player_coordinate := &Coordinate{
+		X: PLAYER_X,
+		Y: PLAYER_Y,
+	}
+	return &Player{
+		C:      *player_coordinate,
+		Height: PLAYER_HEIGHT,
+		Width:  PLAYER_WIDTH,
+	}
+}
+
 func (p *Player) Draw(dst *ebiten.Image) {
 	ebitenutil.DrawRect(dst, float64(p.C.X), float64(p.C.Y), p.Width, p.Height, color.RGBA{45, 90, 39, 0xff})
 }

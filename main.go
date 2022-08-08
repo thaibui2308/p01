@@ -9,18 +9,16 @@ import (
 
 // testing variables
 var (
-	test_player_coordinate *breakout.Coordinate
-	test_player            *breakout.Player
+	test_player       *breakout.Player
+	test_targetSprite *breakout.TargetSprite
 )
 
 func init() {
-	test_player_coordinate = &breakout.Coordinate{
-		X: breakout.PLAYER_X,
-		Y: breakout.PLAYER_Y,
-	}
-	test_player = &breakout.Player{
-		C: *test_player_coordinate, Height: breakout.PLAYER_HEIGHT, Width: breakout.PLAYER_WIDTH,
-	}
+	// test player
+	test_player = breakout.NewPlayer()
+
+	// test target sprite
+	test_targetSprite = breakout.NewTargetSprite()
 }
 
 type Game struct{}
@@ -32,6 +30,7 @@ func (g *Game) Update() error {
 
 func (g *Game) Draw(screen *ebiten.Image) {
 	test_player.Draw(screen)
+	test_targetSprite.Draw(screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
