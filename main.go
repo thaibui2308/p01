@@ -11,6 +11,7 @@ import (
 var (
 	test_player       *breakout.Player
 	test_targetSprite *breakout.TargetSprite
+	test_bullet       *breakout.Bullet
 )
 
 func init() {
@@ -19,6 +20,9 @@ func init() {
 
 	// test target sprite
 	test_targetSprite = breakout.NewTargetSprite()
+
+	// test bullet
+	test_bullet = breakout.NewBullet()
 }
 
 type Game struct{}
@@ -31,6 +35,7 @@ func (g *Game) Update() error {
 func (g *Game) Draw(screen *ebiten.Image) {
 	test_player.Draw(screen)
 	test_targetSprite.Draw(screen)
+	test_bullet.Draw(screen)
 }
 
 func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
