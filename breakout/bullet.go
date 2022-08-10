@@ -49,6 +49,8 @@ func (b *Bullet) Draw(dst *ebiten.Image) {
 
 }
 
+func (b *Bullet) CollisionDetect(sprite *TargetSprite)
+
 func (b *Bullet) Update() error {
 	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
 		b.Move()
