@@ -12,10 +12,13 @@ const (
 	PLAYER_Y      = SCREEN_HEIGHT * .8
 
 	// Bullet's settings
-	BULLET_HEIGHT = PLAYER_HEIGHT / 2
-	BULLET_WIDTH  = BULLET_HEIGHT
-	BULLET_X      = PLAYER_X + BULLET_WIDTH
-	BULLET_Y      = PLAYER_Y - BULLET_HEIGHT
+	BULLET_HEIGHT         = PLAYER_HEIGHT / 2
+	BULLET_WIDTH          = BULLET_HEIGHT
+	BULLET_X              = PLAYER_X + BULLET_WIDTH
+	BULLET_Y              = PLAYER_Y - BULLET_HEIGHT
+	BOUNCE_UPWARD_ANGLE   = -40
+	BOUNCE_DOWNWARD_ANGLE = 40
+	BOUNCE_DISTANCE       = 2
 
 	// Targer and TargetSprite' settings
 	NUM_ROWS                   = 4

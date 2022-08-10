@@ -12,6 +12,7 @@ type Bullet struct {
 	C      Coordinate
 	Height float64
 	Width  float64
+	Moving bool
 }
 
 func NewBullet() *Bullet {
@@ -23,6 +24,23 @@ func NewBullet() *Bullet {
 		C:      *bullet_coordinate,
 		Height: BULLET_HEIGHT,
 		Width:  BULLET_WIDTH,
+		Moving: false,
+	}
+}
+
+func (b *Bullet) Move() {
+	if b.Moving {
+		return
+	} else {
+		b.Moving = true
+	}
+}
+
+func (b *Bullet) Stop() {
+	if !b.Moving {
+		return
+	} else {
+		b.Moving = false
 	}
 }
 
@@ -31,9 +49,15 @@ func (b *Bullet) Draw(dst *ebiten.Image) {
 
 }
 
-func (b *Bullet) Move() error {
+func (b *Bullet) Update() error {
 	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+		b.Move()
+	} else if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
+		b.Stop()
+	}
 
+	if b.Moving {
+		b.C.BounceUpward(BOUNCE_UPWARD_ANGLE, BOUNCE_DISTANCE)
 	}
 	return nil
 }
