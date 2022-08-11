@@ -21,6 +21,7 @@ func NewPlayer() *Player {
 		X: PLAYER_X,
 		Y: PLAYER_Y,
 	}
+
 	return &Player{
 		C:         *player_coordinate,
 		Height:    PLAYER_HEIGHT,
