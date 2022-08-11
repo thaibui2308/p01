@@ -1,6 +1,7 @@
 package breakout
 
 import (
+	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -9,10 +10,11 @@ import (
 )
 
 type Bullet struct {
-	C      Coordinate
-	Height float64
-	Width  float64
-	Moving bool
+	C             Coordinate
+	Height        float64
+	Width         float64
+	Moving        bool
+	CollisionType int
 }
 
 func NewBullet() *Bullet {
@@ -21,14 +23,15 @@ func NewBullet() *Bullet {
 		Y: BULLET_Y,
 	}
 	return &Bullet{
-		C:      *bullet_coordinate,
-		Height: BULLET_HEIGHT,
-		Width:  BULLET_WIDTH,
-		Moving: false,
+		C:             *bullet_coordinate,
+		Height:        BULLET_HEIGHT,
+		Width:         BULLET_WIDTH,
+		Moving:        false,
+		CollisionType: NO_COLLISION,
 	}
 }
 
-func (b *Bullet) Move() {
+func (b *Bullet) SetMoving() {
 	if b.Moving {
 		return
 	} else {
@@ -36,7 +39,7 @@ func (b *Bullet) Move() {
 	}
 }
 
-func (b *Bullet) Stop() {
+func (b *Bullet) SetStop() {
 	if !b.Moving {
 		return
 	} else {
@@ -49,13 +52,34 @@ func (b *Bullet) Draw(dst *ebiten.Image) {
 
 }
 
-func (b *Bullet) CollisionDetect(sprite *TargetSprite)
+func (b *Bullet) CollisionDetect(sprite *TargetSprite) (index []int) {
+	index = make([]int, len(sprite.Sprite))
+
+	// four cases
+	for i, v := range sprite.Sprite {
+		// Collision at the top and bottom of the Target's block
+		if b.C.X+b.Width >= v.C.X && b.C.X <= v.C.X+v.Width {
+			if b.C.Y <= v.C.Y+v.Height && b.C.Y >= v.C.Y {
+				index = append(index, i)
+				fmt.Println("Buzz")
+				continue
+			}
+		} else if b.C.Y+b.Height >= v.C.Y && b.C.Y <= v.C.Y+v.Height {
+			if b.C.X <= v.C.X+v.Width && b.C.X >= v.C.X {
+				index = append(index, i)
+				fmt.Println("Buzz")
+				continue
+			}
+		}
+	}
+	return
+}
 
 func (b *Bullet) Update() error {
 	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
-		b.Move()
+		b.SetMoving()
 	} else if inpututil.IsKeyJustReleased(ebiten.KeySpace) {
-		b.Stop()
+		b.SetStop()
 	}
 
 	if b.Moving {

@@ -30,6 +30,7 @@ type Game struct{}
 func (g *Game) Update() error {
 	err := test_player.Update()
 	_ = test_bullet.Update()
+	_ = test_bullet.CollisionDetect(test_targetSprite)
 	return err
 }
 
