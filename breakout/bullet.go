@@ -26,7 +26,7 @@ func NewBullet() *Bullet {
 		Height:      BULLET_HEIGHT,
 		Width:       BULLET_WIDTH,
 		Moving:      false,
-		Translation: *TOP_RIGHT_VECTOR,
+		Translation: *TOP_LEFT_VECTOR,
 	}
 }
 

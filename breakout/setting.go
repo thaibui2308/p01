@@ -46,12 +46,12 @@ var (
 		Y: math.Tan(RIGHT_DOWNWARD_ANGLE) * (BULLET_SPEED / math.Sqrt(math.Tan(RIGHT_DOWNWARD_ANGLE)*math.Tan(RIGHT_DOWNWARD_ANGLE)+1)),
 	}
 	TOP_LEFT_VECTOR = &Coordinate{
-		X: BULLET_SPEED / math.Sqrt(math.Tan(LEFT_UPWARD_ANGLE)*math.Tan(LEFT_UPWARD_ANGLE)+1),
-		Y: math.Tan(LEFT_UPWARD_ANGLE) * (BULLET_SPEED / math.Sqrt(math.Tan(LEFT_UPWARD_ANGLE)*math.Tan(LEFT_UPWARD_ANGLE)+1)),
+		X: -BULLET_SPEED / math.Sqrt(math.Tan(LEFT_UPWARD_ANGLE)*math.Tan(LEFT_UPWARD_ANGLE)+1),
+		Y: math.Tan(LEFT_UPWARD_ANGLE) * (-BULLET_SPEED / math.Sqrt(math.Tan(LEFT_UPWARD_ANGLE)*math.Tan(LEFT_UPWARD_ANGLE)+1)),
 	}
 	BOTTOM_LEFT_VECTOR = &Coordinate{
-		X: BULLET_SPEED / math.Sqrt(math.Tan(LEFT_DOWNWARD_ANGLE)*math.Tan(LEFT_DOWNWARD_ANGLE)+1),
-		Y: math.Tan(LEFT_DOWNWARD_ANGLE) * (BULLET_SPEED / math.Sqrt(math.Tan(LEFT_DOWNWARD_ANGLE)*math.Tan(LEFT_DOWNWARD_ANGLE)+1)),
+		X: -BULLET_SPEED / math.Sqrt(math.Tan(LEFT_DOWNWARD_ANGLE)*math.Tan(LEFT_DOWNWARD_ANGLE)+1),
+		Y: math.Tan(LEFT_DOWNWARD_ANGLE) * (-BULLET_SPEED / math.Sqrt(math.Tan(LEFT_DOWNWARD_ANGLE)*math.Tan(LEFT_DOWNWARD_ANGLE)+1)),
 	}
 )
 
