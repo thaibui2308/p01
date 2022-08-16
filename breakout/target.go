@@ -52,3 +52,8 @@ func (t *TargetSprite) Draw(dst *ebiten.Image) {
 		v.Draw(dst)
 	}
 }
+
+func (t *TargetSprite) Remove(index int) {
+	t.Sprite[index] = t.Sprite[len(t.Sprite)-1]
+	t.Sprite = t.Sprite[:len(t.Sprite)-1]
+}

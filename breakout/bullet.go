@@ -77,15 +77,17 @@ func (b *Bullet) Update(sprite *TargetSprite, player *Player) error {
 		}
 
 		// Check for collision to adjust translation vector
-		for _, v := range sprite.Sprite {
+		for i, v := range sprite.Sprite {
 			// Collision at the top and bottom of the Target's block
 			if b.C.X+b.Width >= v.C.X && b.C.X <= v.C.X+v.Width {
 				if b.C.Y <= v.C.Y+v.Height && b.C.Y >= v.C.Y {
+					sprite.Remove(i)
 					b.Translation.ReflectOx()
 				}
 				// Collision at the left and right edge of Target's block
 			} else if b.C.Y+b.Height >= v.C.Y && b.C.Y <= v.C.Y+v.Height {
 				if b.C.X <= v.C.X+v.Width && b.C.X >= v.C.X {
+					sprite.Remove(i)
 					b.Translation.ReflectOy()
 				}
 			}
