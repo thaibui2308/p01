@@ -48,7 +48,7 @@ func (p *Player) Stop() {
 }
 
 func (p *Player) Draw(dst *ebiten.Image) {
-	ebitenutil.DrawRect(dst, float64(p.C.X), float64(p.C.Y), p.Width, p.Height, color.RGBA{45, 90, 39, 0xff})
+	ebitenutil.DrawRect(dst, float64(p.C.X), float64(p.C.Y), p.Width, p.Height, color.RGBA{0, 0, 0xff, 0xff})
 }
 
 // Update the player's position if there's any keystroke

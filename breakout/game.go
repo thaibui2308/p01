@@ -48,7 +48,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	g.Bullet.Draw(screen)
 	g.Score = g.TargetSprite.HitSprite * 2
 	toScreen := "Score: " + strconv.Itoa(g.Score) + "\n" +
-		"Life left: " + strconv.Itoa(g.LifeLeft)
+		"Heart: " + strconv.Itoa(g.LifeLeft)
 	ebitenutil.DebugPrint(screen, toScreen)
 }
 
