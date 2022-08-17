@@ -8,8 +8,8 @@ import (
 )
 
 type TargetSprite struct {
-	Sprite          []Target
-	RemainingTarget int
+	Sprite    []Target
+	HitSprite int
 }
 
 type Target struct {
@@ -43,7 +43,7 @@ func NewTargetSprite() *TargetSprite {
 
 	return &TargetSprite{
 		targetSprite,
-		len(targetSprite),
+		0,
 	}
 }
 

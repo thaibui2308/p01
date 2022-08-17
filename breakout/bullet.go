@@ -77,7 +77,17 @@ func (b *Bullet) Update(game *Game) error {
 			} else if b.C.Y <= 0 {
 				b.Translation.ReflectOx()
 			} else if b.C.Y+b.Height > SCREEN_HEIGHT {
-				game.GameOver = true
+				// Check to see how many life Player still has left
+				if game.LifeLeft > 1 {
+					game.LifeLeft--
+					b.ResetTo(&Coordinate{
+						X: game.Player.C.X + BULLET_WIDTH,
+						Y: game.Player.C.Y - BULLET_HEIGHT,
+					})
+					game.Start = false
+				} else {
+					game.GameOver = true
+				}
 			}
 
 			// Check for collision to adjust translation vector
@@ -86,12 +96,14 @@ func (b *Bullet) Update(game *Game) error {
 				if b.C.Add(&b.Translation).X+b.Width >= v.C.X && b.C.Add(&b.Translation).X <= v.C.X+v.Width {
 					if b.C.Add(&b.Translation).Y <= v.C.Y+v.Height && b.C.Add(&b.Translation).Y >= v.C.Y {
 						game.TargetSprite.Remove(i)
+						game.TargetSprite.HitSprite++
 						b.Translation.ReflectOx()
 					}
 					// Collision at the left and right edge of Target's block
 				} else if b.C.Add(&b.Translation).Y+b.Height >= v.C.Y && b.C.Add(&b.Translation).Y <= v.C.Y+v.Height {
 					if b.C.Add(&b.Translation).X <= v.C.X+v.Width && b.C.Add(&b.Translation).X >= v.C.X {
 						game.TargetSprite.Remove(i)
+						game.TargetSprite.HitSprite++
 						b.Translation.ReflectOy()
 					}
 				}
@@ -103,4 +115,9 @@ func (b *Bullet) Update(game *Game) error {
 		b.C.X = game.Player.C.X + BULLET_WIDTH
 	}
 	return nil
+}
+
+func (b *Bullet) ResetTo(c *Coordinate) {
+	b.C.SetX(c.GetX())
+	b.C.SetY(c.GetY())
 }
