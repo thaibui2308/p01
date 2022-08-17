@@ -25,3 +25,10 @@ func (c *Coordinate) ReflectOx() {
 func (c *Coordinate) ReflectOy() {
 	c.SetX((-1) * c.GetX())
 }
+
+func (c *Coordinate) Add(vector *Coordinate) *Coordinate {
+	return &Coordinate{
+		c.X + vector.X,
+		c.Y + vector.Y,
+	}
+}
