@@ -71,11 +71,11 @@ func (b *Bullet) Update(game *Game) error {
 				// Check to see how many life Player still has left
 				if game.LifeLeft > 1 {
 					game.LifeLeft--
-					b.ResetTo(&Coordinate{
-						X: game.Player.C.X + BULLET_WIDTH,
-						Y: BULLET_Y,
-					})
 					game.Start = false
+					b.ResetTo(&Coordinate{
+						X: game.Player.C.X + (PLAYER_WIDTH-BULLET_WIDTH)/2,
+						Y: PLAYER_Y - BULLET_HEIGHT,
+					})
 				} else {
 					game.GameOver = true
 				}
@@ -123,4 +123,6 @@ func (b *Bullet) DetectCollision(collidable Collidable) bool {
 func (b *Bullet) ResetTo(c *Coordinate) {
 	b.C.SetX(c.GetX())
 	b.C.SetY(c.GetY())
+	b.Translation = *INITIAL_BULLET_DIRECTION
+	b.C.Translate(&b.Translation)
 }
