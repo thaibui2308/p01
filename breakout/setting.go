@@ -1,6 +1,9 @@
 package breakout
 
-import "math"
+import (
+	"image/color"
+	"math"
+)
 
 const (
 	// Screen layout's settings
@@ -15,7 +18,7 @@ const (
 	PLAYER_MOVING_SPEED = 3
 
 	// Bullet's settings
-	BULLET_HEIGHT        = PLAYER_HEIGHT / 2.6
+	BULLET_HEIGHT        = PLAYER_HEIGHT / 2
 	BULLET_WIDTH         = BULLET_HEIGHT
 	BULLET_X             = PLAYER_X + BULLET_WIDTH
 	BULLET_Y             = PLAYER_Y - BULLET_HEIGHT
@@ -40,5 +43,14 @@ var (
 	INITIAL_BULLET_DIRECTION = &Coordinate{
 		X: BULLET_SPEED / math.Sqrt(math.Tan(RIGHT_UPWARD_ANGLE)*math.Tan(RIGHT_UPWARD_ANGLE)+1),
 		Y: math.Tan(RIGHT_UPWARD_ANGLE) * (BULLET_SPEED / math.Sqrt(math.Tan(RIGHT_UPWARD_ANGLE)*math.Tan(RIGHT_UPWARD_ANGLE)+1)),
+	}
+)
+
+var (
+	PALETTE = []color.RGBA{
+		{255, 0, 0, 0xff},
+		{255, 127, 0, 0xff},
+		{255, 255, 0, 0xff},
+		{0, 255, 0, 0xff},
 	}
 )

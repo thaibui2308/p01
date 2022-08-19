@@ -31,6 +31,14 @@ func NewPlayer() *Player {
 	}
 }
 
+func (p *Player) Location() Coordinate {
+	return p.C
+}
+
+func (p *Player) H() float64 { return p.Height }
+
+func (p *Player) W() float64 { return p.Width }
+
 func (p *Player) Move() {
 	if p.Moving {
 		return
@@ -67,10 +75,10 @@ func (p *Player) Update() error {
 
 	if p.Moving {
 		new_pos := p.C.X + float64(p.Direction)*3
-		if new_pos > SCREEN_WIDTH {
-			new_pos = 0
-		} else if new_pos < (0 - PLAYER_WIDTH) {
+		if new_pos >= SCREEN_WIDTH-PLAYER_WIDTH {
 			new_pos = SCREEN_WIDTH - PLAYER_WIDTH
+		} else if new_pos <= 0 {
+			new_pos = 0
 		}
 		p.C.SetX(new_pos)
 	}

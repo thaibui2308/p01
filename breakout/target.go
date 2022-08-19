@@ -16,10 +16,23 @@ type Target struct {
 	C      Coordinate
 	Width  float64
 	Height float64
+	Color  color.RGBA
+}
+
+func (t *Target) Location() Coordinate {
+	return t.C
+}
+
+func (t *Target) H() float64 {
+	return t.Height
+}
+
+func (t *Target) W() float64 {
+	return t.Width
 }
 
 func (t *Target) Draw(dst *ebiten.Image) {
-	ebitenutil.DrawRect(dst, float64(t.C.X), float64(t.C.Y), t.Width, t.Height, color.RGBA{45, 90, 39, 0xff})
+	ebitenutil.DrawRect(dst, float64(t.C.X), float64(t.C.Y), t.Width, t.Height, t.Color)
 
 }
 
@@ -37,6 +50,7 @@ func NewTargetSprite() *TargetSprite {
 				*tmpCoordinate,
 				TARGET_WIDTH,
 				TARGET_HEIGHT,
+				PALETTE[i],
 			})
 		}
 	}
