@@ -104,13 +104,15 @@ func (b *Bullet) DetectCollision(collidable Collidable) bool {
 	c := collidable.Location()
 	Height := collidable.H()
 	Width := collidable.W()
-	if b.C.Add(&b.Translation).X+b.Width >= c.X && b.C.Add(&b.Translation).X <= c.X+Width {
-		if b.C.Add(&b.Translation).Y <= c.Y+Height && b.C.Add(&b.Translation).Y >= c.Y {
+	// Pre-Collision enhancement
+	pre := b.Translation.Add(&b.Translation)
+	if b.C.Add(pre).X+b.Width >= c.X && b.C.Add(pre).X <= c.X+Width {
+		if b.C.Add(pre).Y <= c.Y+Height && b.C.Add(pre).Y >= c.Y {
 			b.Translation.ReflectOx()
 			return true
 		}
-	} else if b.C.Add(&b.Translation).Y+b.Height >= c.Y && b.C.Add(&b.Translation).Y <= c.Y+Height {
-		if b.C.Add(&b.Translation).X <= c.X+Width && b.C.Add(&b.Translation).X >= c.X {
+	} else if b.C.Add(pre).Y+b.Height >= c.Y && b.C.Add(pre).Y <= c.Y+Height {
+		if b.C.Add(pre).X <= c.X+Width && b.C.Add(pre).X >= c.X {
 			b.Translation.ReflectOy()
 			return true
 		}
