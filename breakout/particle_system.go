@@ -11,26 +11,25 @@ type ParticleSystem struct {
 
 func NewParticleSystem(emitter Collidable) *ParticleSystem {
 	particles := make([]*Particle, 0)
-	for i := 0; i < 9; i++ {
-		particles = append(particles, NewParticle(emitter))
+	for i := 0; i < 12; i++ {
+		tmp := NewParticle(emitter)
+		particles = append(particles, tmp)
+		if i >= 1 {
+			if i%2 == 1 {
+				particles[i].Velocity.SetY(particles[i-1].Velocity.GetY() * (-1))
+			} else {
+				particles[i].Velocity.SetX(particles[i-1].Velocity.GetX() * (-1))
+			}
+		}
 	}
 	spacingX := emitter.W() / 9
 	spacingY := emitter.H() / 3
 	for i := 0; i < len(particles); i++ {
-		tmp := 1.0
-		if i%2 == 0 {
-			tmp = 1.0
-		} else {
-			tmp = -1.0
-		}
-		new_X := particles[i].Location.GetX() + float64(i%10)*spacingX
+		new_X := particles[i].Location.GetX() + float64(i%12)*spacingX
 		new_Y := particles[i].Location.GetY() + float64(i%3)*spacingY
 		particles[i].Location.SetX(new_X)
 		particles[i].Location.SetY(new_Y)
-		dX := particles[i].Velocity.GetX() + float64(i+1)*tmp*.5
-		dY := particles[i].Velocity.GetY() + float64(i+1)*tmp*.5
-		particles[i].Velocity.SetX(dX)
-		particles[i].Velocity.SetY(dY)
+
 	}
 	return &ParticleSystem{
 		Emitter:  emitter,
