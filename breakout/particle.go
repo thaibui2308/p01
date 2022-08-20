@@ -24,7 +24,7 @@ func NewParticle(emitter Collidable) *Particle {
 			Y: emitter.Location().Y,
 		},
 		Velocity:     *RandVelocity(),
-		Acceleration: Coordinate{X: 0, Y: -.05},
+		Acceleration: Coordinate{X: 0, Y: -.02},
 		Lifespan:     255,
 	}
 }
@@ -34,9 +34,7 @@ func (p *Particle) Update() error {
 	p.Location = *p.Location.Add(&p.Velocity)
 	p.Lifespan -= 2
 
-	if p.Lifespan <= 0 {
-		p.Lifespan = 0
-	} else if p.Lifespan == 205 {
+	if p.Lifespan == 205 {
 		p.Location.ReflectOy()
 	}
 
