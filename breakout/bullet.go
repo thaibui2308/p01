@@ -86,6 +86,7 @@ func (b *Bullet) Update(game *Game) error {
 				// Collision at the top and bottom of the Target's block
 				hit := b.DetectCollision(&v)
 				if hit {
+					game.AppendSystem(NewParticleSystem(&v))
 					game.TargetSprite.Remove(i)
 					game.TargetSprite.HitSprite++
 				}
