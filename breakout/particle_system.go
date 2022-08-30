@@ -22,7 +22,7 @@ func NewParticleSystem(emitter Collidable) *ParticleSystem {
 			}
 		}
 	}
-	spacingX := emitter.W() / 9
+	spacingX := emitter.W() / 12
 	spacingY := emitter.H() / 3
 	for i := 0; i < len(particles); i++ {
 		new_X := particles[i].Location.GetX() + float64(i%12)*spacingX

@@ -23,7 +23,7 @@ func NewParticle(emitter Collidable) *Particle {
 			X: emitter.Location().X,
 			Y: emitter.Location().Y,
 		},
-		Velocity:     *RandVelocity(),
+		Velocity:     *Velocity(),
 		Acceleration: Coordinate{X: 0, Y: -.05},
 		Lifespan:     255,
 	}

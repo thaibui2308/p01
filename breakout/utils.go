@@ -1,6 +1,6 @@
 package breakout
 
-func RandVelocity() *Coordinate {
+func Velocity() *Coordinate {
 
 	return &Coordinate{
 		X: INITIAL_BULLET_DIRECTION.X * .4,
